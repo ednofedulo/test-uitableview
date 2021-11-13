@@ -9,6 +9,7 @@ import UIKit
 
 class LargeTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var stackView: UIStackView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -18,6 +19,23 @@ class LargeTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setup(numberOfButtons: Int, tintColor: UIColor = .systemBlue ) {
+        guard numberOfButtons > 0 else { return }
+        for i in 1...numberOfButtons {
+            stackView.addArrangedSubview(self.buttonFactory(withTitle: String(i), tintColor: tintColor))
+        }
+    }
+    
+    private func buttonFactory(withTitle title: String, tintColor: UIColor) -> UIButton {
+        
+        
+        let button = UIButton(configuration: .tinted(), primaryAction: nil)
+        
+        button.setTitle(title, for: .normal)
+        button.tintColor = tintColor
+        return button
     }
     
 }

@@ -45,7 +45,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,6 +62,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             }
         case 2:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "largeCell", for: indexPath) as? LargeTableViewCell {
+                cell.setup(numberOfButtons: 0)
+                return cell
+            }
+        case 3:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "largeCell", for: indexPath) as? LargeTableViewCell {
+                cell.setup(numberOfButtons: 3, tintColor: .systemPink)
                 return cell
             }
         default:
